@@ -1,0 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  background-size: cover; 
+  background: url(/images/f6.jpg) no-repeat fixed center / cover;
+  background-position: center;
+
+}
+
+header {
+  padding: 8px;
+  position: relative;
+  top: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  width: 100%;
+}
+
+.logo {
+  text-decoration: none;
+  color: #333333;
+  font-size: 40px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 1px;
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
+
+}
+
+.logo:hover {
+  color: #2ecc71; /* New color on hover */
+  transform: scale(1.1); /* Scale the text to make it pop out */
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #333333;
+  margin: 0 10px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  background: #00f73e;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 4px 15px;
+  border-radius: 20px;
+  transition-property: background;
+
+}
+
+.navigation a:hover {
+  color: #ff7f50;
+  background: #fff;
+
+}
+header.navigation a:not(:last-child) {
+  margin-right: 30px;
+}
+
+.menu-btn,
+.close-btn {
+  cursor: pointer;
+  font-size: 20px;
+  display: none;
+}
+
+.content {
+  padding: 40px;
+  margin-top: 100px;
+  margin: 60px 100px;
+  max-width: 650px;
+
+}
+
+.content h2 {
+  font-size: 40px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 60px;
+  color: #090909;
+}
+
+.content p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #000000aa;
+  font-weight: 800;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serifs;
+}
+
+.info-btn {
+  display: inline-block;
+  background-color: #333333;
+  color: #ededf0;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;  
+  text-transform: uppercase;
+  font-weight: 700;
+
+}
+.info-btn:hover{
+  background: #100f10;
+  font-size: x-large;
+
+}
+
+footer {
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.media-icons a {
+  color: #fbfbfb;
+  margin: 0 10px;
+  font-size: 26px;
+  transition: color 0.3s ease;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3)
+}
+
+.media-icons a:hover {
+  color: #0a2b41;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5)
+}
+
+#check {
+  z-index: 3;
+  display: none;
+}
+
+.menu-btn,
+.close-btn {
+  display: none;
+}
+
+label[for="check"] {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  font-size: 30px;
+  color: #333333;
+  cursor: pointer;
+}
+
+.menu-btn {
+  display: inline-block;
+}
+
+.close-btn {
+  display: none;
+}
+
+@media screen and (max-width: 980px) {
+  .navigation {
+    display: none;
+  }
+  label{
+    display:block;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    transition-property: color;
+  }
+  label:hover{
+    color: #e50c0c;
+  }
+  label .close-btn{
+    display: none;
+    }
+  #check:checked ~ header .navigation{
+    z-index: 2;
+    position: fixed;
+    background: rgba(154, 209, 226, 0.9);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  #check:checked ~ header .navigation a{
+    font-weight: 700;
+    margin-right: 0;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+  }
+
+  #check:checked ~ header .navigation .menu-btn{
+  display: none;
+  }
+
+  #check:checked ~ header .navigation .close-btn{
+    z-index: 2;
+    display: block;
+    position: fixed;
+  }
+  label .menu-btn{
+    position: absolute;
+  }
+  header .logo{
+    bottom: -6px;
+  }
+  .content .info h2{
+    font-size: 45px;
+    line-height: 50px;
+
+  }
+  .content .info p{
+    font-size: 14px;
+  }
+}
