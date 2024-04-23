@@ -14,10 +14,50 @@ section {
   min-height: 100vh;
   text-align: center;
   background-size: cover; 
-  background: url(/images/f6.jpg) no-repeat fixed center / cover;
+  background: url(/images/f3.jpg) no-repeat fixed center / cover;
   background-position: center;
 
 }
+#home-section {
+  padding: 20px;
+  color:#090a09; /* Ensures text is white for better visibility on darker backgrounds */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Sets the height to full viewport height */
+  text-align: center;
+  background-image: url("/images/f2.jpg") no-repeat center center/cover;
+}
+
+#home-section .home-content h2 {
+  font-size: 2.5em; /* Increases the font size of the heading */
+  margin-bottom: 0.5em; /* Adds spacing below the heading */
+}
+
+#home-section .home-content p {
+  font-size: 1.5em; /* Increases the font size of the paragraph */
+  margin-bottom: 1em; /* Adds spacing below the paragraph */
+}
+
+/* Styling for the login button */
+#home-section .btn {
+  padding: 10px 20px; /* Adds padding to increase button size */
+  background-color: #4CAF50; /* Sets a green background */
+  color: white; 
+  font-weight: 1000;
+  text-decoration: none; /* Removes underline from the link */
+  font-size: 1.2em; /* Increases the font size of the button text */
+  border: none; /* Removes border */
+  border-radius: 5px; 
+  transition: background-color 0.3s, transform 0.3s; 
+}
+
+#home-section .btn:hover, #home-section .btn:focus {
+  background-color: #367C39; 
+  transform: scale(1.1); 
+  outline: none;
+}
+
 
 header {
   padding: 8px;
@@ -105,8 +145,8 @@ header.navigation a:not(:last-child) {
 .content p {
   font-size: 18px;
   margin-bottom: 40px;
-  color: #000000aa;
-  font-weight: 800;
+  color: #000000f8;
+  font-weight: 1000;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serifs;
 }
 
@@ -238,8 +278,6 @@ label[for="check"] {
   .content .info p{
     font-size: 14px;
   }
-
-}
 #footer {
   background: url("../img/footer-bg.jpg") top center no-repeat;
   background-size: cover;
