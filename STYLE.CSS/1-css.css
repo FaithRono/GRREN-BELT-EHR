@@ -16,6 +16,7 @@ section {
   background-size: cover; 
   background: url(/images/f3.jpg) no-repeat fixed center / cover;
   background-position: center;
+  z-index: 1;
 
 }
 #home-section {
@@ -26,12 +27,14 @@ section {
   align-items: center;
   height: 100vh; /* Sets the height to full viewport height */
   text-align: center;
+  z-index: 1;
   background-image: url("/images/f2.jpg") no-repeat center center/cover;
 }
 
 #home-section .home-content h2 {
   font-size: 2.5em; /* Increases the font size of the heading */
-  margin-bottom: 0.5em; /* Adds spacing below the heading */
+  margin-bottom: 0.5em;
+  z-index: 1;
 }
 
 #home-section .home-content p {
@@ -48,7 +51,8 @@ section {
   text-decoration: none; /* Removes underline from the link */
   font-size: 1.2em; /* Increases the font size of the button text */
   border: none; /* Removes border */
-  border-radius: 5px; 
+  border-radius: 5px;
+  z-index: 1; 
   transition: background-color 0.3s, transform 0.3s; 
 }
 
@@ -56,15 +60,16 @@ section {
   background-color: #367C39; 
   transform: scale(1.1); 
   outline: none;
+  z-index: 1;
 }
 
 
 header {
   padding: 8px;
-  position: relative;
+  position: sticky;
   top: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  z-index: 1000;
   width: 100%;
 }
 
@@ -87,8 +92,8 @@ header {
 }
 
 .navigation {
-  display: flex;
   justify-content: center;
+  display: flex;
   margin-top: 20px;
 }
 
@@ -106,7 +111,9 @@ header {
   border-radius: 20px;
   transition-property: background;
 
+
 }
+
 
 .navigation a:hover {
   color: #ff7f50;
