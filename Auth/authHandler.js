@@ -1,5 +1,5 @@
-// authHandler.js
-import supabase from './supabaseClient.js';
+import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
+import supabase from SupabaseAuthClient;
 
 function handleAuthChange() {
     supabase.auth.onAuthStateChange((event, session) => {
