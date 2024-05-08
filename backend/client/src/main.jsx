@@ -7,6 +7,8 @@ import {
 import App from "./App";
 import Record from "./components/Record";
 import RecordList from "./components/RecordList";
+import PrescriptionRecords from "./components/Prescriptions.jsx";
+import DoctorRecords from "./components/Doctors.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -37,6 +39,26 @@ const router = createBrowserRouter([
       {
         path: "/edit/:id",
         element: <Record />,
+      },
+    ],
+  },
+  {
+    path: "/doctors/:id",
+    element: <App />
+    children: [
+      {
+        path: "doctors/:id",
+        element: <DoctorRecord />,
+      },
+    ],
+  },
+  {
+    path: "/prescriptions/:id",
+    element: <App />,
+    children: [
+      {
+        path: "prescriptions/:id",
+        element: <PrescriptionRecords />,
       },
     ],
   },
