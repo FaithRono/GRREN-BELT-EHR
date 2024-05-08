@@ -593,6 +593,24 @@ section {
     max-width: 800px;
     margin: 0 auto;
 }
+#services-section img {
+    width: 5%;
+    height: 5%;
+    padding: 1%;
+    margin: 1%;
+}
+#contact-section img {
+    width: 5%;
+    height: 5%;
+    padding: 1%;
+    margin: 1%;
+}
+#testimonials-section img {
+    width: 5%; 
+    height: 5%; 
+    padding: 1%; 
+    margin: 1%; 
+}
 
 h2 {
     font-size: 2.5rem;
@@ -632,7 +650,6 @@ h2 {
 #features-section {
     background: linear-gradient(to bottom,   #82c1f4 0%, rgb(238, 169, 238) 100%); 
 }
-
 
 
 /* Footer Styles */
