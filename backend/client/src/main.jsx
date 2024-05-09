@@ -35,7 +35,21 @@ const router = createBrowserRouter([
     ],
   },
   {
+<<<<<<< HEAD
     path: "/doctors",
+=======
+    path: "/doctors/:id",
+    element: <App />,
+    children: [
+      {
+        path: "doctors/:id",
+        element: <DoctorRecord />,
+      },
+    ],
+  },
+  {
+    path: "/prescriptions/:id",
+>>>>>>> ec630387571cff3308894f0bffa79f558b607bd9
     element: <App />,
     children: [
       { index: true, element: <DoctorRecords /> },
