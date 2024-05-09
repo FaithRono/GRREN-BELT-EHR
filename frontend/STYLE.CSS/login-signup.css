@@ -10,7 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background:  url(/images/loginpic2.jpg)no-repeat;
+    background:  url(../images/loginpic2.jpg)no-repeat;
     background-size: cover;
 }
 
@@ -18,7 +18,7 @@ body{
     position: relative;
     width: 600px;
     height: 600px;
-    background: url(/images/a2.jpg)no-repeat;
+    background: url(../images/a2.jpg)no-repeat;
     border-radius: 20px;
     box-shadow: 0 0 50px #5406e5;
     padding: 40px;

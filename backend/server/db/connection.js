@@ -1,24 +1,28 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient } from 'mongodb';
 
-const URI = process.env.ATLAS_URI || "mongodb+srv://owengitau02:4mKISVcGSu0m3HnR@cluster0.7b8iikw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const client = new MongoClient(URI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
+// MongoDB connection URI from environment variables or fallback to a default (not recommended for production)
+const uri = process.env.ATLAS_URI || "mongodb+srv://owengitau02:4mKISVcGSu0m3HnR@cluster0.7b8iikw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const client = new MongoClient(uri);
 
-try {
-  // Connect the client to the server
-  await client.connect();
-  // Send a ping to confirm a successful connection
-  await client.db("admin").command({ ping: 1 });
-  console.log("Pinged your deployment. You successfully connected to MongoDB!");
-} catch (err) {
-  console.error(err);
-}
+let dbConnection;
 
-let db = client.db("patient_record");
+const connectToServer = (callback) => {
+  client.connect((err, db) => {
+    if (err || !db) {
+      console.error('Failed to connect to MongoDB', err);
+      return callback(err);
+    }
+    dbConnection = db.db('patient_records'); 
+    console.log('Successfully connected to MongoDB.');
+    return callback();
+  });
+};
 
-export default db;
+const getDb = () => {
+    if (!dbConnection) {
+        throw new Error('Database not initialized');
+    }
+    return dbConnection;
+};
+
+export { connectToServer, getDb };

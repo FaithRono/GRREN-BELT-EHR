@@ -1,14 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
+import SharedForm from "./components/sharedform";
 import Record from "./components/Record";
 import RecordList from "./components/RecordList";
-import PrescriptionRecords from "./components/Prescriptions.jsx";
-import DoctorRecords from "./components/Doctors.jsx";
+import Pharmacy from "./components/Pharmacy";
+import Finance from "./components/Finance";
+import DoctorRecords from "./components/Doctors";
+import { FormDataProvider } from "./components/datacontext"; // Import the provider
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -16,56 +16,66 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <RecordList />,
-      },
+      { index: true, element: <RecordList /> },
+      { path: "/", element: <SharedForm /> }, 
     ],
   },
   {
     path: "/create",
     element: <App />,
     children: [
-      {
-        path: "/create",
-        element: <Record />,
-      },
+      { index: true, element: <Record /> },
     ],
   },
   {
     path: "/edit/:id",
     element: <App />,
     children: [
-      {
-        path: "/edit/:id",
-        element: <Record />,
-      },
+      { index: true, element: <Record /> },
     ],
   },
   {
-    path: "/doctors/:id",
-    element: <App />
-    children: [
-      {
-        path: "doctors/:id",
-        element: <DoctorRecord />,
-      },
-    ],
-  },
-  {
-    path: "/prescriptions/:id",
+    path: "/doctors",
     element: <App />,
     children: [
-      {
-        path: "prescriptions/:id",
-        element: <PrescriptionRecords />,
-      },
+      { index: true, element: <DoctorRecords /> },
+    ],
+  },
+  {
+    path: "/pharmacy",
+    element: <App />,
+    children: [
+      { index: true, element: <Pharmacy /> },
+    ],
+  },
+  {
+    path: "/pharmacy/edit/:id",
+    element: <App />,
+    children: [
+      { index: true, element: <Pharmacy /> },
+    ],
+  },
+  {
+    path: "/finance",
+    element: <App />,
+    children: [
+      { index: true, element: <Finance /> },
+    ],
+  },
+  {
+    path: "/finance/edit/:id",
+    element: <App />,
+    children: [
+      { index: true, element: <Finance /> },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <FormDataProvider> 
+      <RouterProvider router={router} />
+    </FormDataProvider>
   </React.StrictMode>
 );

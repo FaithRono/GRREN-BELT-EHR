@@ -97,7 +97,7 @@ section {
   min-height: 100vh;
   text-align: center;
   background-size: cover; 
-  background: url(/images/f3.jpg) no-repeat fixed center / cover;
+  background: url(../images/f3.jpg) no-repeat fixed center / cover;
   background-position: center;
   z-index: 1;
 

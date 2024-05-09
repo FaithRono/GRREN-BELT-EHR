@@ -1,101 +1,61 @@
-import express from "express";
-import db from "../db/connection.js";
-import { ObjectId } from "mongodb";
+import express from 'express';
+import { ObjectId } from 'mongodb';
+import { getDb } from '../db/connection.js'; // Ensure this path matches your structure
 
 const router = express.Router();
 
-// Get a list of all records
-router.get("/", async (req, res) => {
+router.get("/:collection", async (req, res) => {
+  const coll = getDb().collection(req.params.collection);
   try {
-    const collection = await db.collection("records");
-    const results = await collection.find({}).toArray();
-    res.status(200).send(results);
+    const results = await coll.find({}).toArray();
+    res.status(200).json(results);
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Error retrieving records");
+    console.error(`Error retrieving records from ${req.params.collection}: ${err}`);
+    res.status(500).send(`Error retrieving records from ${req.params.collection}`);
   }
 });
 
-// Get a single record by id
-router.get("/:id", async (req, res) => {
+router.post("/:collection", async (req, res) => {
+  const coll = getDb().collection(req.params.collection);
   try {
-    const collection = await db.collection("records");
-    const query = { _id: new ObjectId(req.params.id) };
-    const result = await collection.findOne(query);
-
-    if (result) {
-      res.status(200).send(result);
-    } else {
-      res.status(404).send("Record not found");
-    }
+    const result = await coll.insertOne(req.body);
+    res.status(201).json(result);
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Error retrieving record");
+    console.error(`Error adding record to ${req.params.collection}: ${err}`);
+    res.status(500).send(`Error adding record to ${req.params.collection}`);
   }
 });
 
-// Create a new record
-router.post("/", async (req, res) => {
-  try {
-    const newDocument = {
-      name: req.body.name,
-      age: req.body.age,
-      gender: req.body.gender,
-      phone_Number: req.body.phone_Number,
-      prescription: req.body.prescription,
-    };
-    const collection = await db.collection("records");
-    const result = await collection.insertOne(newDocument);
-    res.status(201).send(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error adding record");
-  }
-});
-
-// Update a record by id
-router.patch("/:id", async (req, res) => {
+router.patch("/:collection/:id", async (req, res) => {
+  const coll = getDb().collection(req.params.collection);
   try {
     const query = { _id: new ObjectId(req.params.id) };
-    const updates = {
-      $set: {
-        name: req.body.name,
-        age: req.body.age,
-        gender: req.body.gender,
-        phone_Number: req.body.phone_Number,
-        prescription: req.body.prescription,
-      },
-    };
-
-    const collection = await db.collection("records");
-    const result = await collection.updateOne(query, updates);
-
+    const updates = { $set: req.body };
+    const result = await coll.updateOne(query, updates);
     if (result.matchedCount === 0) {
-      res.status(404).send("Record not found");
+      res.status(404).send(`Record not found in ${req.params.collection}`);
     } else {
-      res.status(200).send(result);
+      res.status(200).json(result);
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Error updating record");
+    console.error(`Error updating record in ${req.params.collection}: ${err}`);
+    res.status(500).send(`Error updating record in ${req.params.collection}`);
   }
 });
 
-// Delete a record
-router.delete("/:id", async (req, res) => {
+router.delete("/:collection/:id", async (req, res) => {
+  const coll = getDb().collection(req.params.collection);
   try {
     const query = { _id: new ObjectId(req.params.id) };
-    const collection = db.collection("records");
-    const result = await collection.deleteOne(query);
-
+    const result = await coll.deleteOne(query);
     if (result.deletedCount === 0) {
-      res.status(404).send("Record not found");
+      res.status(404).send(`Record not found in ${req.params.collection}`);
     } else {
-      res.status(204).send(result);
+      res.status(204).send();
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Error deleting record");
+    console.error(`Error deleting record in ${req.params.collection}: ${err}`);
+    res.status(500).send(`Error deleting record in ${req.params.collection}`);
   }
 });
 
