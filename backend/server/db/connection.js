@@ -1,6 +1,4 @@
 import { MongoClient } from 'mongodb';
-
-// MongoDB connection URI from environment variables or fallback to a default (not recommended for production)
 const uri = process.env.ATLAS_URI || "mongodb+srv://owengitau02:4mKISVcGSu0m3HnR@cluster0.7b8iikw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const client = new MongoClient(uri);
 

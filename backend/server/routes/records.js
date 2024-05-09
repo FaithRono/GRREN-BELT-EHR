@@ -1,6 +1,6 @@
 import express from 'express';
 import { ObjectId } from 'mongodb';
-import { getDb } from '../db/connection.js'; // Ensure this path matches your structure
+import { getDb } from '../db/connection.js';
 
 const router = express.Router();
 
