@@ -8,7 +8,7 @@ import RecordList from "./components/RecordList";
 import Pharmacy from "./components/Pharmacy";
 import Finance from "./components/Finance";
 import DoctorRecords from "./components/Doctors";
-import { FormDataProvider } from "./components/datacontext"; // Import the provider
+import { FormDataProvider } from "./components/datacontext"; 
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -17,7 +17,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <RecordList /> },
-      { path: "/", element: <SharedForm /> }, 
+      { path: "/create", element: <SharedForm /> },
+
     ],
   },
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Record /> },
+      {path: "/create", element:<Record />}
     ],
   },
   {
@@ -35,21 +37,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-<<<<<<< HEAD
     path: "/doctors",
-=======
-    path: "/doctors/:id",
-    element: <App />,
-    children: [
-      {
-        path: "doctors/:id",
-        element: <DoctorRecord />,
-      },
-    ],
-  },
-  {
-    path: "/prescriptions/:id",
->>>>>>> ec630387571cff3308894f0bffa79f558b607bd9
     element: <App />,
     children: [
       { index: true, element: <DoctorRecords /> },
